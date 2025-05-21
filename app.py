@@ -1,8 +1,10 @@
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-@app.route('/skill', methods=['POST'])
+@app.route('/')
+def home():
+    return jsonify({"message": "Hello from Flask app!"})
 def skill():
     data = request.get_json()
     user_utterance = data.get('userRequest', {}).get('utterance', '')
@@ -25,5 +27,5 @@ def skill():
         }
     })
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    app.run()
